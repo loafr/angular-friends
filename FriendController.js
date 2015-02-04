@@ -1,10 +1,23 @@
 var app = angular.module('fbApp');
 
 app.controller('FriendController', function($scope) {
-	// $scope.test = "Hello World"; <-- works, lets go!
 
-	$scope.searchTerm = '';
-
+	$scope.searchTermName = '';
+	$scope.searchTermLocation = '';
+	/* $scope.sortDescending; = false;
+	$scope.sortAscending = true;
+	$scope.sort = function() {
+		$scope.sortAscending = !$scope.sortAscending;
+	}; */
+	$scope.options = [
+		{item: 'name', none: 'yes'},
+		{item: 'friends', none: 'no'}, 
+		{item: 'city', none: 'yes'}, 
+		{item: 'state', none: 'yes'}, 
+		{item: 'country', none: 'no'}
+	];
+	$scope.myOption = $scope.options[0];
+	$scope.predicate - '-name';
 
 	$scope.friends = [
     {

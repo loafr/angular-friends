@@ -27,27 +27,23 @@
 <form class="form-inline searchForm" role="form">
   <div class="form-group">
 
-  <input class="form-control" placeholder="Search Anything About Your Friends"  ng-model="searchTerm">
-  <!-- The stuff below is For step 5....get rid of the one above if you wish-->
-<!--    
-    <input class="form-control" placeholder="Search Your Friends' Name" >
-    <input class="form-control" placeholder="Search Your Freinds' Location" > 
- -->
-    <select class="input-medium">
-        <option>Name</option>
-        <option># friends</option>
-        <option>City</option>
-        <option>State</option>
-        <option>Country</option>
-    </select>
-    <select class="input-medium">
-        <option value="false">Descending</option>
-        <option value="true">Ascending</option>
-    </select>
+ <!-- <input class="form-control" placeholder="Search Anything About Your Friends"  ng-model="searchTerm"> -->
+    
+    <input class="form-control" placeholder="Search Your Friends' Name" ng-model="searchTermName" >
+    <input class="form-control" placeholder="Search Your Friends' Location" ng-model="searchTermLocation" > 
+ 
+    Sort by: <select class="input-medium" ng-model="myOption" ng-options="option.item for option in options" ></select>
+    
+    <!-- <select class="input-medium"> -->
+
+        <button value="true" ng-click="predicate = 'name'; reverse=false">Ascending</button>
+        <button value="false" ng-click="predicate = '-name'; reverse=false">Descending</button>
+
+    <!-- </select> -->
   </div>
 </form>
 
-  <ul ng-repeat="friend in friends | filter:{name:searchTerm}">
+  <ul ng-repeat="friend in friends | filter:{name:searchTermName} | filter:{current_location:searchTermLocation} | orderBy:predicate:reverse">
     <li class='friend'>
        <img class="profile-pic" src='{{friend.pic_square}}'>
       <h3>{{ friend.name }}</h3>
